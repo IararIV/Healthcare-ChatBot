@@ -19,6 +19,7 @@ Using now: https://github.com/vsharathchandra/AI-Healthcare-chatbot
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import pickle
 
 df = pd.read_csv("./Training.csv")
 label = df.prognosis
@@ -64,3 +65,12 @@ for idx, row in data.iterrows():
     if b == True: 
         print(label.iloc[idx])
         break
+    
+#%% EXTRA: saving synthoms names as pickle
+
+with open('sytnhoms.pkl', 'rb') as f:
+    mynewlist = pickle.load(f)
+with open('synthoms.pkl', 'wb') as f:
+    pickle.dump(list(data.columns), f)
+with open('synthoms.pkl', 'rb') as f:
+    mynewlist = pickle.load(f)
