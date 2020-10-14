@@ -86,11 +86,12 @@ print(r.recognize_google(audio, show_all='True'))
 # =============================================================================
 
 r = sr.Recognizer()
-mic = sr.Microphone()
+mic = sr.Microphone(device_index=14)
 #print(sr.Microphone.list_microphone_names()) # device_index=3
 
 with mic as source:
-    r.adjust_for_ambient_noise(source)
+    #r.energy_threshold = 0 #257 by default
+    r.adjust_for_ambient_noise(source, duration=2)
     audio = r.listen(source)
 
 print(r.recognize_google(audio)) #language='sp-SP'
